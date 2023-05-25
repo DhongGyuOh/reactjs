@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script>
+      const root = document.getElementById("root");
+      const span = React.createElement(
+        "span",
+        { id: "domSpan", style: { color: "blue" } },
+        "Hello"
+      );
+      const btn = React.createElement(
+        "button",
+        { onClick: () => alert("hello") },
+        "Click Me"
+      );
+      const btn2 = React.createElement(
+        "button",
+        { onClick: () => alert("hello") },
+        "Click Me"
+      );
+      const contaioner = React.createElement("div", null, [span, btn, btn2]);
+      ReactDOM.render(contaioner, root);
+    </script>
+  </body>
+</html>
