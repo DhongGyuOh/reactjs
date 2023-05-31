@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>replit</title>
+    <title>State~</title>
   </head>
   <body>
     <div id="root"></div>
@@ -13,38 +13,26 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
-
-    function counting() {
-      counter++;
-      render();
+    function App() {
+      const [count, counting] = React.useState(0);
+      return (
+        <div>
+          <h1>Count: {count}</h1>
+          <button
+            style={{ width: "50px", fontSize: "32px", color: "blue" }}
+            onClick={() => counting(count + 1)}
+          >
+            +
+          </button>
+          <button
+            style={{ width: "50px", fontSize: "32px", color: "red" }}
+            onClick={() => counting(count - 1)}
+          >
+            -
+          </button>
+        </div>
+      );
     }
-    function render() {
-      ReactDOM.render(<Container />, root);
-    }
-    const Button = () => (
-      <button
-        style={{ backgroundColor: "tomato" }}
-        onClick={() => alert("Clicked")}
-      >
-        Click Me
-      </button>
-    );
-    const Container = () => (
-      <div>
-        <h1>counter</h1>
-        <h1>Total clicks: {counter}</h1>
-        <button onClick={counting}>Click me</button>
-        <button onMouseEnter={countingDouble}>Double Score</button>
-        <Button />
-        <Button />
-        <Button />
-      </div>
-    );
-    function countingDouble() {
-      counter += 2;
-      render();
-    }
-    render();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
