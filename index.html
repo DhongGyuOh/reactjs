@@ -20,13 +20,13 @@
           <h1>Count: {count}</h1>
           <button
             style={{ width: "50px", fontSize: "32px", color: "blue" }}
-            onClick={() => counting(count + 1)}
+            onClick={() => counting((current) => current + 1)}
           >
             +
           </button>
           <button
             style={{ width: "50px", fontSize: "32px", color: "red" }}
-            onClick={() => counting(count - 1)}
+            onClick={() => counting((current) => current + -1)}
           >
             -
           </button>
