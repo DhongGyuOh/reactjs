@@ -13,23 +13,27 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
+
     function App() {
-      const [count, counting] = React.useState(0);
+      const [minutes, setMinutes] = React.useState();
+      const [hours, setHours] = React.useState(0);
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+        setHours(event.target.value / 60);
+      };
       return (
         <div>
-          <h1>Count: {count}</h1>
-          <button
-            style={{ width: "50px", fontSize: "32px", color: "blue" }}
-            onClick={() => counting((current) => current + 1)}
-          >
-            +
-          </button>
-          <button
-            style={{ width: "50px", fontSize: "32px", color: "red" }}
-            onClick={() => counting((current) => current + -1)}
-          >
-            -
-          </button>
+          <h1>Super Converter</h1>
+          <label htmlfor="minutes">Minute</label>
+          <input
+            id="minutes"
+            placeholder="Minutes"
+            type="number"
+            value={minutes}
+            onChange={onChange}
+          />
+          <label htmlfor="hours">Hour</label>
+          <input value={hours} id="hours" placeholder="Hours" type="number" />
         </div>
       );
     }
