@@ -13,27 +13,35 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-
+    function Btn({ props2, changeValue }) {
+      return (
+        <button
+          onClick={changeValue}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {props2}
+        </button>
+      );
+    }
+    const MemorizedBtn = React.memo(Btn);
+    //App 컴포넌트 생성
     function App() {
-      const [minutes, setMinutes] = React.useState();
-      const [hours, setHours] = React.useState(0);
-      const onChange = (event) => {
-        setMinutes(event.target.value);
-        setHours(event.target.value / 60);
-      };
+      const [value, setValue] = React.useState("Save Change"); //State 생성
+      const changeValue = () => setValue("Revert Change"); //function 생성
       return (
         <div>
-          <h1>Super Converter</h1>
-          <label htmlfor="minutes">Minute</label>
-          <input
-            id="minutes"
-            placeholder="Minutes"
-            type="number"
-            value={minutes}
-            onChange={onChange}
+          <MemorizedBtn
+            props1="btn1"
+            props2={value}
+            changeValue={changeValue}
           />
-          <label htmlfor="hours">Hour</label>
-          <input value={hours} id="hours" placeholder="Hours" type="number" />
+          <MemorizedBtn props1="btn2" props2="Continue" />
         </div>
       );
     }
